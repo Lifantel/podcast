@@ -5,24 +5,45 @@ const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const episodeList = document.getElementById('episodeList');
 
-let episodes = []; // Veriler JSON'dan gelecek
+let episodes = [];
 let currentIdx = 0;
 let isPlaying = false;
 
-// 1. JSON VERİSİNİ ÇEK (Cache Kırıcı Dahil)
+// 1. JSON ÇEK VE SÜRELERİ HESAPLA
 async function fetchEpisodes() {
     try {
-        // Sonuna eklenen timestamp sayesinde tarayıcı her zaman en güncel JSON'ı çeker
         const response = await fetch(`episodes.json?t=${new Date().getTime()}`);
         episodes = await response.json();
-        loadList(); 
+        
+        // Her dosya için gerçek süreyi al
+        for (let ep of episodes) {
+            if (ep.duration === "auto") {
+                ep.duration = await getAudioDuration(ep.file);
+            }
+        }
+        
+        renderList(); 
     } catch (error) {
-        console.error("Podcast listesi yüklenemedi:", error);
+        console.error("Liste yüklenemedi:", error);
     }
 }
 
-// 2. Listeyi Oluştur
-function loadList() {
+// Dosyadan gerçek süreyi çeken yardımcı fonksiyon
+function getAudioDuration(url) {
+    return new Promise((resolve) => {
+        const tempAudio = new Audio();
+        tempAudio.src = url;
+        tempAudio.addEventListener('loadedmetadata', () => {
+            resolve(formatTime(tempAudio.duration));
+        });
+        tempAudio.addEventListener('error', () => {
+            resolve("??:??"); // Dosya bulunamazsa
+        });
+    });
+}
+
+// 2. Listeyi Ekrana Bas
+function renderList() {
     episodeList.innerHTML = "";
     episodes.forEach((ep, index) => {
         const div = document.createElement('div');
@@ -31,7 +52,7 @@ function loadList() {
         div.innerHTML = `
             <div class="ep-info">
                 <h3>${ep.title}</h3>
-                <div class="ep-meta">📅 ${ep.date} • ⏱️ ${ep.duration}</div>
+                <div class="ep-meta">📅 ${ep.date} • ⏱️ <span class="duration-text">${ep.duration}</span></div>
             </div>
             <div class="play-icon"><i class="fa-solid fa-circle-play"></i></div>
         `;
@@ -39,19 +60,19 @@ function loadList() {
     });
 }
 
-// 3. Şarkıyı Yükle
+// 3. Oynatıcı Fonksiyonları
 function loadTrack(index) {
     currentIdx = index;
     audio.src = episodes[index].file;
     document.getElementById('currentTitle').innerText = episodes[index].title;
     document.getElementById('currentDate').innerText = episodes[index].date;
     
-    loadList(); 
+    renderList(); 
     playTrack();
 }
 
 function playTrack() {
-    audio.play();
+    audio.play().catch(e => console.log("Oynatma başlatılamadı:", e));
     isPlaying = true;
     playBtn.innerHTML = '<i class="fa-solid fa-circle-pause"></i>';
 }
@@ -65,8 +86,8 @@ function pauseTrack() {
 function togglePlay() {
     if (audio.src) {
         isPlaying ? pauseTrack() : playTrack();
-    } else {
-        if(episodes.length > 0) loadTrack(0);
+    } else if (episodes.length > 0) {
+        loadTrack(0);
     }
 }
 
@@ -78,26 +99,25 @@ function prevTrack() {
     if (currentIdx < episodes.length - 1) loadTrack(currentIdx + 1);
 }
 
-// Progress Bar İşlemleri
-audio.addEventListener('timeupdate', (e) => {
-    const { duration, currentTime } = e.srcElement;
-    const progressPercent = (currentTime / duration) * 100;
-    progressBar.value = progressPercent || 0;
-    
-    currentTimeEl.innerText = formatTime(currentTime);
-    if(duration) durationEl.innerText = formatTime(duration);
-});
-
-progressBar.addEventListener('input', () => {
-    const duration = audio.duration;
-    audio.currentTime = (progressBar.value * duration) / 100;
-});
-
+// Zaman Formatlayıcı
 function formatTime(seconds) {
+    if (isNaN(seconds)) return "00:00";
     const min = Math.floor(seconds / 60);
     const sec = Math.floor(seconds % 60);
     return `${min}:${sec < 10 ? '0' : ''}${sec}`;
 }
 
-// BAŞLAT: Sayfa açılınca JSON'ı çek
+// Progress Bar Güncelleme
+audio.addEventListener('timeupdate', () => {
+    const percent = (audio.currentTime / audio.duration) * 100;
+    progressBar.value = percent || 0;
+    currentTimeEl.innerText = formatTime(audio.currentTime);
+    if (audio.duration) durationEl.innerText = formatTime(audio.duration);
+});
+
+progressBar.addEventListener('input', () => {
+    audio.currentTime = (progressBar.value * audio.duration) / 100;
+});
+
+// Başlat
 fetchEpisodes();
