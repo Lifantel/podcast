@@ -1,37 +1,27 @@
-// 🎙️ PODCAST BÖLÜMLERİNİ BURAYA GİR
-const episodes = [
-    {
-        title: "Bölüm 3: Geleceğin Teknolojileri",
-        date: "20 Ekim 2023",
-        duration: "14:20",
-        file: "assets/mp3/yusufyasin.mp4" // Dosya yoluna dikkat et
-    },
-    {
-        title: "Bölüm 2: Yazılım Dünyasına Giriş",
-        date: "15 Ekim 2023",
-        duration: "08:45",
-        file: "assets/mp3/bolum2.mp3"
-    },
-    {
-        title: "Bölüm 1: Merhaba Dünya",
-        date: "10 Ekim 2023",
-        duration: "05:12",
-        file: "assets/mp3/bolum1.mp3"
-    }
-];
-
-// --- AŞAĞISINA DOKUNMANA GEREK YOK --- //
-
 const audio = document.getElementById('audioPlayer');
 const playBtn = document.getElementById('playBtn');
 const progressBar = document.getElementById('progressBar');
 const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const episodeList = document.getElementById('episodeList');
+
+let episodes = []; // Veriler JSON'dan gelecek
 let currentIdx = 0;
 let isPlaying = false;
 
-// Listeyi Oluştur
+// 1. JSON VERİSİNİ ÇEK (Cache Kırıcı Dahil)
+async function fetchEpisodes() {
+    try {
+        // Sonuna eklenen timestamp sayesinde tarayıcı her zaman en güncel JSON'ı çeker
+        const response = await fetch(`episodes.json?t=${new Date().getTime()}`);
+        episodes = await response.json();
+        loadList(); 
+    } catch (error) {
+        console.error("Podcast listesi yüklenemedi:", error);
+    }
+}
+
+// 2. Listeyi Oluştur
 function loadList() {
     episodeList.innerHTML = "";
     episodes.forEach((ep, index) => {
@@ -49,14 +39,14 @@ function loadList() {
     });
 }
 
-// Şarkıyı Yükle
+// 3. Şarkıyı Yükle
 function loadTrack(index) {
     currentIdx = index;
     audio.src = episodes[index].file;
     document.getElementById('currentTitle').innerText = episodes[index].title;
     document.getElementById('currentDate').innerText = episodes[index].date;
     
-    loadList(); // Aktif sınıfını güncelle
+    loadList(); 
     playTrack();
 }
 
@@ -76,7 +66,7 @@ function togglePlay() {
     if (audio.src) {
         isPlaying ? pauseTrack() : playTrack();
     } else {
-        loadTrack(0);
+        if(episodes.length > 0) loadTrack(0);
     }
 }
 
@@ -88,13 +78,12 @@ function prevTrack() {
     if (currentIdx < episodes.length - 1) loadTrack(currentIdx + 1);
 }
 
-// Progress Bar
+// Progress Bar İşlemleri
 audio.addEventListener('timeupdate', (e) => {
     const { duration, currentTime } = e.srcElement;
     const progressPercent = (currentTime / duration) * 100;
-    progressBar.value = progressPercent;
+    progressBar.value = progressPercent || 0;
     
-    // Süre Formatı
     currentTimeEl.innerText = formatTime(currentTime);
     if(duration) durationEl.innerText = formatTime(duration);
 });
@@ -110,5 +99,5 @@ function formatTime(seconds) {
     return `${min}:${sec < 10 ? '0' : ''}${sec}`;
 }
 
-// Sayfa açılınca listeyi yükle
-loadList();
+// BAŞLAT: Sayfa açılınca JSON'ı çek
+fetchEpisodes();
