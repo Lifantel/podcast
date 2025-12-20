@@ -4,7 +4,7 @@ const episodes = [
         title: "Bölüm 3: Geleceğin Teknolojileri",
         date: "20 Ekim 2023",
         duration: "14:20",
-        file: "assets/mp3/bolum3.mp3" // Dosya yoluna dikkat et
+        file: "assets/mp3/yusufyasin.mp4" // Dosya yoluna dikkat et
     },
     {
         title: "Bölüm 2: Yazılım Dünyasına Giriş",
