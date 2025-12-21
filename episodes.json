@@ -64,5 +64,11 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/derya.mp4"
+    },
+    {
+        "title": "İsa Direkli",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/isa.mp4"
     }
 ]
