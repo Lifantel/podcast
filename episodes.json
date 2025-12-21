@@ -130,5 +130,11 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/defne.mp4"
+    },
+    {
+        "title": "Yusuf Çelik",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/yusufc.mpeg"
     }
 ]
