@@ -82,5 +82,17 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/sema.aac"
+    },
+    {
+        "title": "Mehmetcan Aydın",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/mcan.mp4"
+    },
+    {
+        "title": "Nuri / Abdulhadi",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/nurihadi.mp4"
     }
 ]
