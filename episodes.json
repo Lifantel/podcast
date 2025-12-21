@@ -12,7 +12,7 @@
         "file": "assets/mp3/behire.mpeg"
     },
     {
-        "title": "Abdullah Enes",
+        "title": "Abdullah Enes Ülker",
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/abdullahenes.mp4"
@@ -36,7 +36,7 @@
         "file": "assets/mp3/melek.mp4"
     },
     {
-        "title": "Kutay Efe",
+        "title": "Kutay Efe Seğmenoğlu",
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/kutay.mp4"
@@ -96,7 +96,7 @@
         "file": "assets/mp3/nurihadi.mp4"
     },
     {
-        "title": "Mehmet Mert",
+        "title": "Mehmet Mert Akkurt",
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/mmert.mpeg"
@@ -124,5 +124,11 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/elif.ogg"
+    },
+    {
+        "title": "Defne Baykal",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/defne.mp4"
     }
 ]
