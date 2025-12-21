@@ -28,5 +28,11 @@
         "date": "21 Ekim 2025",
         "duration": "auto",
         "file": "assets/mp3/selin.mp4"
+    },
+    {
+        "title": "Melek",
+        "date": "21 Ekim 2025",
+        "duration": "auto",
+        "file": "assets/mp3/melek.mp4"
     }
 ]
