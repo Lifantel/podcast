@@ -94,5 +94,17 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/nurihadi.mp4"
+    },
+    {
+        "title": "Mehmet Mert",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/mmert.mpeg"
+    },
+    {
+        "title": "Arda Subaşı",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/arda.m4a"
     }
 ]
