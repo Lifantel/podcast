@@ -112,5 +112,17 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/duru.mp4"
+    },
+    {
+        "title": "Mehmet Ali Karabulut",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/mali.m4a"
+    },
+    {
+        "title": "Elif Törün",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/elif.ogg"
     }
 ]
