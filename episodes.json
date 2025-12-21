@@ -34,5 +34,11 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/melek.mp4"
+    },
+    {
+        "title": "Kutay Efe",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/kutay.mp4"
     }
 ]
