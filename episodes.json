@@ -106,5 +106,11 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/arda.m4a"
+    },
+    {
+        "title": "Duru Çakıcı",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/duru.mp4"
     }
 ]
