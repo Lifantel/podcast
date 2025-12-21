@@ -52,5 +52,17 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/mfatih.m4a"
+    },
+    {
+        "title": "Kerem Kaan Yabaneri",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/kerem.mp4"
+    },
+    {
+        "title": "Derya Ateş",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/derya.mp4"
     }
 ]
