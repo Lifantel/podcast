@@ -46,5 +46,11 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/busra.mp4"
+    },
+    {
+        "title": "Mehmet Fatih Gültekin",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/mfatih.m4a"
     }
 ]
