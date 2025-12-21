@@ -76,5 +76,11 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/naz.mp4"
+    },
+    {
+        "title": "Sema Alataş",
+        "date": "21 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/sema.aac"
     }
 ]
