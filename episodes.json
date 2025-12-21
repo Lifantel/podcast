@@ -22,5 +22,11 @@
         "date": "21 Ekim 2025",
         "duration": "auto",
         "file": "assets/mp3/fikribargu.mp4"
+    },
+    {
+        "title": "Selin Boz",
+        "date": "21 Ekim 2025",
+        "duration": "auto",
+        "file": "assets/mp3/selin.mp4"
     }
 ]
