@@ -154,5 +154,11 @@
         "date": "21 Aralık 2025",
         "duration": "auto",
         "file": "assets/mp3/kayra.mp3"
+    },
+    {
+        "title": "Samet Ünel",
+        "date": "22 Aralık 2025",
+        "duration": "auto",
+        "file": "assets/mp3/samet.mpeg"
     }
 ]
